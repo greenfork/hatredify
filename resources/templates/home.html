@@ -2,7 +2,24 @@
 {% block content %}
 <div class="row">
   <div class="col-sm-12">
-    {{docs|markdown}}
+      <h1>hatredify</h1>
+      <p>Add some hatred to your text!</p>
+      <form method="POST" action="/">
+          {% csrf-field %}
+          <textarea class="form-control"
+                    rows="8"
+                    cols="50"
+                    name="text-chunk"
+                    placeholder="Put some text here...">{{initial-chunk}}</textarea>
+          <button type="submit" class="btn btn-danger"
+                  style="width: 200px; display: block; margin: 10px auto 10px auto;">HATREDIFY</button>
+      </form>
+      {% if hatredified-chunk %}
+      <textarea class="form-control"
+                rows="8"
+                cols="50"
+                id="hatredified-chunk">{{hatredified-chunk}}</textarea>
+      {% endif %}
   </div>
 </div>
 {% endblock %}

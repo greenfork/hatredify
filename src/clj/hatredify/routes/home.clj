@@ -1,18 +1,22 @@
 (ns hatredify.routes.home
   (:require [hatredify.layout :as layout]
             [hatredify.db.core :as db]
-            [compojure.core :refer [defroutes GET]]
+            [compojure.core :refer [defroutes GET POST]]
             [ring.util.http-response :as response]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [hatredify.lib.core :refer [hatredify-text]]))
 
 (defn home-page []
   (layout/render
-    "home.html" {:docs (-> "docs/docs.md" io/resource slurp)}))
+   "home.html"))
 
-(defn about-page []
-  (layout/render "about.html"))
+(defn change-text [data]
+  (layout/render "home.html"
+                 {:hatredified-chunk
+                  (hatredify-text (get-in data [:params :text-chunk]))
+                  :initial-chunk
+                  (get-in data [:params :text-chunk])}))
 
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (GET "/about" [] (about-page)))
-
+  (POST "/" request (change-text request)))
