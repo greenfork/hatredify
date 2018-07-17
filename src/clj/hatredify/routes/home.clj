@@ -8,7 +8,9 @@
 
 (defn home-page []
   (layout/render
-   "home.html"))
+   "home.html"
+   {:default-chunk
+    "It is a good day, sir!\nIt's so warm outside!"}))
 
 (defn change-text [data]
   (layout/render "home.html"
