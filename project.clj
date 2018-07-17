@@ -1,6 +1,6 @@
 (defproject hatredify "0.1.0-SNAPSHOT"
 
-  :description "FIXME: write description"
+  :description "Web-application which changes chunks of text to more evil form."
   :url "http://example.com/FIXME"
 
   :dependencies [[clj-time "0.14.4"]

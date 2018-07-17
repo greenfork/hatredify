@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS antonyms
+(id INT PRIMARY KEY AUTO_INCREMENT,
+ word_id INT,
+ antonym VARCHAR(100),
+ FOREIGN KEY (word_id) REFERENCES words(id));
