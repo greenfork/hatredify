@@ -6,7 +6,7 @@
   [s]
   (clojure.string/split s #"\b"))
 
-(defn list-words-and-antonyms
+(defn- db-words-and-antonyms
   "Returns a map of words with their antonyms from database."
   []
   (loop [raw-map (db/get-thesaurus)
@@ -20,18 +20,26 @@
         rs))))
 
 (defn replace-with-antonyms
-  "Replaces words with upper-cased antonyms."
-  [coll]
-  (let [antonym-list (list-words-and-antonyms)]
+  "Replaces words `coll` with antonyms from `m`, upper-cases them."
+  [m coll]
+  (let [antonym-list m]
     (map #(if-let [antonyms (get antonym-list %)]
             (clojure.string/upper-case (rand-nth (seq antonyms)))
             %)
          coll)))
 
+(defn change-articles
+  "Changes 'a' article to 'an' and in reverse where necessary."
+  [s]
+  (-> s
+     (clojure.string/replace #"a ([AEIO])" "an $1")
+     (clojure.string/replace #"an ([QWRTYUPSDFGHJKLZXCVBNM])" "a $1")))
+
 (defn hatredify-text
-  "Finds all positive adjectives, replace with antonyms, make uppercase."
+  "Finds all positive adjectives, replaces with antonyms, makes uppercase."
   [s]
   (->> s
      (split-to-words)
-     (replace-with-antonyms)
-     (apply str)))
+     (replace-with-antonyms (db-words-and-antonyms))
+     (apply str)
+     (change-articles)))
