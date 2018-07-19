@@ -1,23 +1,10 @@
 (ns hatredify.lib.core
-  (:require [hatredify.db.core :as db]))
+  (:require [hatredify.db.functions :as dbf]))
 
 (defn split-to-words
   "Splits the text to the collection of words."
   [s]
   (clojure.string/split s #"\b"))
-
-(defn- db-words-and-antonyms
-  "Returns a map of words with their antonyms from database."
-  []
-  (loop [raw-map (db/get-thesaurus)
-         rs {}]
-    (let [f (first raw-map)
-          k (:word f)
-          v (:antonym f)]
-      (if (seq raw-map)
-        (recur (rest raw-map)
-               (merge-with #(clojure.set/union %1 %2) rs {k #{v}}))
-        rs))))
 
 (defn replace-with-antonyms
   "Replaces words `coll` with antonyms from `m`, upper-cases them."
@@ -40,6 +27,6 @@
   [s]
   (->> s
      (split-to-words)
-     (replace-with-antonyms (db-words-and-antonyms))
+     (replace-with-antonyms (dbf/words-and-antonyms))
      (apply str)
      (change-articles)))
