@@ -1,8 +1,8 @@
 (ns hatredify.test.lib.core
-  (:require [hatredify.lib.core :refer :all]
-            [clojure.test :refer :all]))
+  (:use [hatredify.lib.core]
+        [clojure.test]))
 
-(deftest main-logic
+(deftest unit-main-logic
   (let [s1 "It is a good day, sir!"
         coll1 ["It" " " "is" " " "a" " " "good" " " "day" ", " "sir" "!"]
         rcoll1 ["It" " " "is" " " "a" " " "AWFUL" " " "day" ", " "sir" "!"]
