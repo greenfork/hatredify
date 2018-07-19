@@ -7,14 +7,13 @@
   (clojure.string/split s #"\b"))
 
 (defn replace-with-antonyms
-  "Replaces words in `coll` with antonyms from `m`, upper-cases them.
-  `m` maps each word to the set of its antonyms."
+  "Replaces each word in `coll` with antonym from `m`, if present.
+  Additionally upper-cases them. `m` maps each word to the set of its antonyms."
   [m coll]
-  (let [antonym-list m]
-    (map #(if-let [antonyms (get antonym-list %)]
-            (clojure.string/upper-case (rand-nth (seq antonyms)))
-            %)
-         coll)))
+  (map #(if-let [antonyms (m (clojure.string/lower-case %))]
+          (clojure.string/upper-case (rand-nth (seq antonyms)))
+          %)
+       coll))
 
 (defn change-articles
   "Changes 'a' article to 'an' and in reverse where necessary."
