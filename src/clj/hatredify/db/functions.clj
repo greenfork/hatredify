@@ -4,6 +4,8 @@
 (defn words-and-antonyms
   "Returns a map of words with their antonyms from database."
   []
+  ;; OPTIMIZE: `get-thesaurus` loads all data in memory, may cause problems
+  ;;           with significant amounts of data.
   (loop [raw-map (db/get-thesaurus)
          rs {}]
     (let [f (first raw-map)
