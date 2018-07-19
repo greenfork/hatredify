@@ -3,6 +3,7 @@
             [hatredify.db.core :as db]
             [compojure.core :refer [defroutes GET POST]]
             [ring.util.http-response :as response]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [clojure.java.io :as io]
             [hatredify.lib.core :refer [hatredify-text]]))
 
@@ -22,3 +23,6 @@
 (defroutes home-routes
   (GET "/" [] (home-page))
   (POST "/" request (change-text request)))
+
+(def app
+  (wrap-defaults home-routes site-defaults))

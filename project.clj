@@ -55,7 +55,8 @@
                                  [pjstadig/humane-test-output "0.8.3"]
                                  [prone "1.6.0"]
                                  [ring/ring-devel "1.6.3"]
-                                 [ring/ring-mock "0.3.2"]]
+                                 [ring/ring-mock "0.3.2"]
+                                 [kerodon "0.9.0"]]
                   :plugins      [[com.jakemccrary/lein-test-refresh "0.23.0"]]
 
                   :source-paths ["env/dev/clj"]
