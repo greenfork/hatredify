@@ -1,7 +1,7 @@
 (ns hatredify.lib.core
   (:require [hatredify.db.functions :as dbf]))
 
-(defn split-to-words
+(defn split-to-tokens
   "Splits `s` to the collection of tokens, not necessarily words."
   [s]
   (clojure.string/split s #"\b"))
@@ -26,7 +26,7 @@
   "Finds all positive adjectives, replaces with antonyms, makes uppercase."
   [s]
   (->> s
-     (split-to-words)
+     (split-to-tokens)
      (replace-with-antonyms (dbf/words-and-antonyms))
      (apply str)
      (change-articles)))
