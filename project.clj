@@ -28,7 +28,9 @@
                  [ring-webjars "0.2.0"]
                  [ring/ring-core "1.6.3"]
                  [ring/ring-defaults "0.3.2"]
-                 [selmer "1.11.8"]]
+                 [selmer "1.11.8"]
+                 ;; FIXME: broken dependency, currently local build
+                 [clj-wordnet "0.3.0-SNAPSHOT"]]
 
   :min-lein-version "2.0.0"
 
