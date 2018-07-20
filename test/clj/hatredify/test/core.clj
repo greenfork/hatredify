@@ -1,4 +1,4 @@
-(ns hatredify.test.lib.integration
+(ns hatredify.test.core
   (:use [hatredify.lib.core]
         [kerodon.core]
         [kerodon.test]
