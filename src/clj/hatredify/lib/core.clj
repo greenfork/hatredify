@@ -2,31 +2,32 @@
   (:require [hatredify.db.functions :as dbf]))
 
 (defn split-to-tokens
-  "Splits `s` to the collection of tokens, not necessarily words."
-  [s]
-  (clojure.string/split s #"\b"))
+  "Splits `test` to the collection of tokens, not necessarily words."
+  [text]
+  (clojure.string/split text #"\b"))
 
 (defn replace-with-antonyms
-  "Replaces each word in `coll` with antonym from `m`, if present.
-  Additionally upper-cases them. `m` maps each word to the set of its antonyms."
-  [m coll]
-  (map #(if-let [antonyms (m (clojure.string/lower-case %))]
+  "Replaces each word in `tokens` with antonym from `dict`, if present.
+  Additionally upper-cases them. `dict` maps each word to the set of its
+  antonyms."
+  [dict tokens]
+  (map #(if-let [antonyms (dict (clojure.string/lower-case %))]
           (clojure.string/upper-case (rand-nth (seq antonyms)))
           %)
-       coll))
+       tokens))
 
 (defn change-articles
   "Changes 'a' article to 'an' and in reverse where necessary."
-  [s]
-  (-> s
-     (clojure.string/replace #"a ([AEIO])" "an $1")
-     (clojure.string/replace #"an ([QWRTYUPSDFGHJKLZXCVBNM])" "a $1")))
+  [text]
+  (-> text
+      (clojure.string/replace #"a ([AEIO])" "an $1")
+      (clojure.string/replace #"an ([QWRTYUPSDFGHJKLZXCVBNM])" "a $1")))
 
 (defn hatredify-text
   "Finds all positive adjectives, replaces with antonyms, makes uppercase."
-  [s]
-  (->> s
-     (split-to-tokens)
-     (replace-with-antonyms (dbf/words-and-antonyms))
-     (apply str)
-     (change-articles)))
+  [text]
+  (->> text
+       (split-to-tokens)
+       (replace-with-antonyms (dbf/words-and-antonyms))
+       (apply str)
+       (change-articles)))
