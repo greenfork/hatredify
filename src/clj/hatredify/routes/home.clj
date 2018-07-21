@@ -5,7 +5,8 @@
             [ring.util.http-response :as response]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [clojure.java.io :as io]
-            [hatredify.lib.core :refer [hatredify-text]]))
+            [hatredify.lib.core :refer [hatredify-text]]
+            [hatredify.lib.wordnet :as wd]))
 
 (defn home-page []
   (layout/render
@@ -16,7 +17,8 @@
 (defn change-text [data]
   (layout/render "home.html"
                  {:hatredified-chunk
-                  (hatredify-text (get-in data [:params :text-chunk]))
+                  (hatredify-text wd/dictionary
+                                  (get-in data [:params :text-chunk]))
                   :initial-chunk
                   (get-in data [:params :text-chunk])}))
 

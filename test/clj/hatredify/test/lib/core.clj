@@ -23,6 +23,5 @@
     (testing "changes to proper articles"
       (is (=  (change-articles rs1) rs1-articles)))
     (testing "whole pipeline"
-      (with-redefs [hatredify.db.functions/words-and-antonyms (fn [] antonyms)]
-        (is (= (hatredify-text s1) rs1-articles))
-        (is (= (hatredify-text s2) rs2))))))
+        (is (= (hatredify-text antonyms s1) rs1-articles))
+        (is (= (hatredify-text antonyms s2) rs2)))))

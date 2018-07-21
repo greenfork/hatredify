@@ -1,5 +1,4 @@
-(ns hatredify.lib.core
-  (:require [hatredify.db.functions :as dbf]))
+(ns hatredify.lib.core)
 
 (defn split-to-tokens
   "Splits `test` to the collection of tokens, not necessarily words."
@@ -20,14 +19,14 @@
   "Changes 'a' article to 'an' and in reverse where necessary."
   [text]
   (-> text
-      (clojure.string/replace #"a ([AEIO])" "an $1")
-      (clojure.string/replace #"an ([QWRTYUPSDFGHJKLZXCVBNM])" "a $1")))
+      (clojure.string/replace #"a ([AEIOU])" "an $1")
+      (clojure.string/replace #"an ([QWRTYPSDFGHJKLZXCVBNM])" "a $1")))
 
 (defn hatredify-text
   "Finds all positive adjectives, replaces with antonyms, makes uppercase."
-  [text]
+  [dict text]
   (->> text
        (split-to-tokens)
-       (replace-with-antonyms (dbf/words-and-antonyms))
+       (replace-with-antonyms dict)
        (apply str)
        (change-articles)))
