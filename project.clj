@@ -29,8 +29,11 @@
                  [ring/ring-core "1.6.3"]
                  [ring/ring-defaults "0.3.2"]
                  [selmer "1.11.8"]
-                 ;; FIXME: broken dependency, currently local build
                  [clj-wordnet "0.3.0-SNAPSHOT"]]
+
+  ;; Includes custom build of clj-wordnet library
+  :repositories [["included-repo"
+                  ~(str (.toURI (java.io.File. "resources/libs")))]]
 
   :min-lein-version "2.0.0"
 
