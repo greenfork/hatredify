@@ -16,9 +16,9 @@ possibly more epic.
 
 You should have [Clojure][2] 1.9.0+ installed.
 
-Additionally you will need [Leiningen][1] 2.0 or above installed.
+Additionally you will need [Leiningen][3] 2.0 or above installed.
 
-[1]: https://github.com/technomancy/leiningen
+[3]: https://github.com/technomancy/leiningen
 [2]: https://clojure.org/guides/getting_started
 
 ## Running
