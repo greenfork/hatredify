@@ -60,13 +60,14 @@
                                  [ring/ring-mock "0.3.2"]
                                  [kerodon "0.9.0"]
                                  [criterium "0.4.4"]]
-                  :plugins      [[com.jakemccrary/lein-test-refresh "0.23.0"]]
-
-                  :source-paths ["env/dev/clj"]
+                  :plugins      [[com.jakemccrary/lein-test-refresh "0.23.0"]
+                                 [lein-exec "0.3.7"]]
+                  :source-paths ["env/dev/clj" "benchmarking"]
                   :resource-paths ["env/dev/resources"]
                   :repl-options {:init-ns user}
                   :injections [(require 'pjstadig.humane-test-output)
-                               (pjstadig.humane-test-output/activate!)]}
+                               (pjstadig.humane-test-output/activate!)]
+                  :aliases {"benchmark" ["exec" "-p" "benchmarking/core.clj"]}}
    :project/test {:jvm-opts ["-Dconf=test-config.edn"]
                   :resource-paths ["env/test/resources"]}
    :profiles/dev {}
