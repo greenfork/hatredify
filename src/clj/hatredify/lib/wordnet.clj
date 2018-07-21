@@ -46,7 +46,8 @@
        (into #{})))
 
 (defn- extract-synonyms
-  "Returns a set of adjectives with at least 1 synset in common with `word`."
+  "Returns a set of adjectives with at least 1 synset in common with `word`.
+  `word` is returned as well as it has its synset in common."
   [word]
   (->> (wordnet word :adjective)
        (map wd/synset)
@@ -54,17 +55,16 @@
        (map :lemma)
        (into #{})))
 
-(defn form-dictionary-map
+(defn- form-dictionary-map
   "Returns a dictionary which maps words to the set of their antonyms."
   [word-list]
-  (let [synonyms #{}]
-    (->> (set word-list)
-         (clojure.set/union synonyms)
-         (reduce #(clojure.set/union %1 (extract-similar-words %2)) #{})
-         (clojure.set/union synonyms)
-         (reduce #(clojure.set/union %1 (extract-synonyms %2)) #{})
-         (clojure.set/union synonyms)
-         (map #(list % (extract-antonyms %)))
-         (filter (comp not empty? second))
-         flatten
-         (apply hash-map))))
+  (->> word-list
+       (reduce #(clojure.set/union %1 (extract-similar-words %2)) #{})
+       (clojure.set/union (set word-list))
+       (reduce #(clojure.set/union %1 (extract-synonyms %2)) #{})
+       (map #(list % (extract-antonyms %)))
+       (filter (comp not empty? second))
+       flatten
+       (apply hash-map)))
+
+(def dictionary (form-dictionary-map positive-words))
