@@ -49,8 +49,8 @@
 (defn -main [& args]
   (mount/start #'hatredify.config/env)
   (cond
-    (nil? (:database-url env))
-    (do
+    #_(nil? (:database-url env))
+    #_(do
       (log/error "Database configuration not found, :database-url environment variable must be set before running")
       (System/exit 1))
     (some #{"init"} args)

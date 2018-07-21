@@ -6,8 +6,12 @@
     [hatredify.config :refer [env]]))
 
 (defstate ^:dynamic *db*
-          :start (conman/connect! {:jdbc-url (env :database-url)})
-          :stop (conman/disconnect! *db*))
+  :start
+  (when (env :database-url)
+    (conman/connect! {:jdbc-url (env :database-url)}))
+  :stop
+  (when *db*
+    (conman/disconnect! *db*)))
 
-(conman/bind-connection *db* "sql/queries.sql")
-
+(when *db*
+  (conman/bind-connection *db* "sql/queries.sql"))

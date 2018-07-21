@@ -1,7 +1,7 @@
 (defproject hatredify "0.1.0-SNAPSHOT"
 
   :description "Web-application which changes chunks of text to more evil form."
-  :url "http://example.com/FIXME"
+  :url "https://github.com/greenfork/hatredify"
 
   :dependencies [[clj-time "0.14.4"]
                  [com.h2database/h2 "1.4.196"]
