@@ -58,7 +58,8 @@
                                  [prone "1.6.0"]
                                  [ring/ring-devel "1.6.3"]
                                  [ring/ring-mock "0.3.2"]
-                                 [kerodon "0.9.0"]]
+                                 [kerodon "0.9.0"]
+                                 [criterium "0.4.4"]]
                   :plugins      [[com.jakemccrary/lein-test-refresh "0.23.0"]]
 
                   :source-paths ["env/dev/clj"]
