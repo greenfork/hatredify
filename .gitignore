@@ -14,3 +14,4 @@ profiles.clj
 /log
 .nrepl-history
 hatredify_*.db.*.db
+.dir-locals.el

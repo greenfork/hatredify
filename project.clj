@@ -1,4 +1,4 @@
-(defproject hatredify "0.1.0-SNAPSHOT"
+(defproject hatredify "1.0.0"
 
   :description "Web-application which changes chunks of text to more evil form."
   :url "https://github.com/greenfork/hatredify"
@@ -50,7 +50,8 @@
              :aot :all
              :uberjar-name "hatredify.jar"
              :source-paths ["env/prod/clj"]
-             :resource-paths ["env/prod/resources"]}
+             :resource-paths ["env/prod/resources"]
+             :uberjar-exclusions [#"resources/data"]}
 
    :dev           [:project/dev :profiles/dev]
    :test          [:project/dev :project/test :profiles/test]
