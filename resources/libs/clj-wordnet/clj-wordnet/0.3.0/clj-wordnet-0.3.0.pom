@@ -3,7 +3,7 @@
   <groupId>clj-wordnet</groupId>
   <artifactId>clj-wordnet</artifactId>
   <packaging>jar</packaging>
-  <version>0.3.0-SNAPSHOT</version>
+  <version>0.3.0</version>
   <name>clj-wordnet</name>
   <description>A WordNet/JWI wrapper library</description>
   <url>https://github.com/delver/clj-wordnet</url>
@@ -17,7 +17,7 @@
     <url>https://github.com/greenfork/clj-wordnet</url>
     <connection>scm:git:git://github.com/greenfork/clj-wordnet.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/greenfork/clj-wordnet.git</developerConnection>
-    <tag>b8e1eaa75792b008068ff1ee22eb28c1504ba6f4</tag>
+    <tag>2d6d74ecc385c656759f5f3c8c886c010ab078ce</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -58,10 +58,10 @@
       </releases>
     </repository>
     <repository>
-      <id>delver</id>
-      <url>http://repo.delver.io/releases</url>
+      <id>local</id>
+      <url>file:/home/dmitry/repos/clj-wordnet/libs/</url>
       <snapshots>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
       <releases>
         <enabled>true</enabled>
@@ -75,12 +75,12 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
-      <version>1.6.0</version>
+      <version>1.9.0</version>
     </dependency>
     <dependency>
       <groupId>edu.mit</groupId>
       <artifactId>jwi</artifactId>
-      <version>2.2.3</version>
+      <version>2.4.0</version>
     </dependency>
   </dependencies>
 </project>

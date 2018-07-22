@@ -29,10 +29,10 @@
                  [ring/ring-core "1.6.3"]
                  [ring/ring-defaults "0.3.2"]
                  [selmer "1.11.8"]
-                 [clj-wordnet "0.3.0-SNAPSHOT"]]
+                 [clj-wordnet "0.3.0"]]
 
   ;; Includes custom build of clj-wordnet library
-  :repositories [["included-repo"
+  :repositories [["local"
                   ~(str (.toURI (java.io.File. "resources/libs")))]]
 
   :min-lein-version "2.0.0"
