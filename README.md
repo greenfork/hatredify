@@ -40,7 +40,7 @@ GNU/Linux system example:
     cp hatredify-1.0.zip hatredify/
     7z x hatredify-1.0.zip
     java -jar hatredify.jar
-    
+
 You can also double-click on the `hatredify.jar` and it should run.
 
 Now open you browser at [`localhost:3000`][4] and put some kind words in it.
@@ -67,11 +67,11 @@ Start a web server application with:
 Run tests with:
 
     lein test
-    
+
 Run benchmarks with:
 
     lein benchmark
-    
+
 ## Documentation
 
 The core logic is in [`hatredify.lib.core`][7]. This file consists of [pure functions][8] only.
@@ -101,4 +101,6 @@ word to its antonyms as follows:
 
 ## License
 
-Licensed under MIT.
+Copyright (c) 2018 Dmitriy Matveyev
+
+Licensed under MIT, set LICENSE.md.
